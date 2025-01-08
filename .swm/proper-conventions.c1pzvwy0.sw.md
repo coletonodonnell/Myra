@@ -1,7 +1,7 @@
 ---
 title: Proper Conventions
 ---
-The proper conventions for the repo can found in this document. Please refer to any of the rules as needed and follow them accordingly when adding new functionality.
+The proper conventions for the repo can found in this document. Please refer to any of the rules as needed and follow them accordingly when adding new functionality as close as you can.
 
 ## Naming Conventions
 
