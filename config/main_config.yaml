@@ -1,0 +1,4 @@
+Username: "Boss"
+Keys:
+  OPEN_AI_API_KEY: "KEY_HERE"
+  ELEVENLABS_API_KEY: "KEY_HERE"
