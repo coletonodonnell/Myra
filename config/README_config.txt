@@ -1,0 +1,1 @@
+Store any config files in the config folder. They should be in yaml format.
