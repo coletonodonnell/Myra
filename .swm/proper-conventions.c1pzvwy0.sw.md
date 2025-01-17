@@ -1,7 +1,7 @@
 ---
 title: Proper Conventions
 ---
-The proper conventions for the repo can found in this document. Please refer to any of the rules as needed and follow them accordingly when adding new functionality.
+The proper conventions for the repo can found in this document. Please refer to any of the rules as needed and follow them accordingly when adding new functionality as close as you can.
 
 ## Naming Conventions
 
@@ -19,7 +19,7 @@ These are the proper naming conventions to be followed for files, folders, and a
 - **Variables**
   - **Regular:** Camelcase (useSystemVoice, previousText)
   - **Static:** Full Capitalized Snakecase (ELEVENLABS_API_KEY)
-- **Classes:** Pascalcase (TestBaselineSuite, Voice)
+- **Classes + Interfaces:** Pascalcase (TestBaselineSuite, Voice)
   - **Class Methods:** Camelcase (getName())
 - **Functions:** Capitalized Snakecase (Set_Voice, Get_Query)
   - **Helper Functions:** Camelcase. Any logic functions not called outside of the file it's in.
