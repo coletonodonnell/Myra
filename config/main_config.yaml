@@ -7,3 +7,9 @@ Voices:
   useSystemVoice: True
   starterVoice: "Taron"
   currentVoice: "Taron"
+Development:
+  devEnvironment: True
+  usingGUI: True
+  usingLLM: True
+  usingOperations: True
+  usingVoice: True

@@ -1,6 +1,6 @@
 from command.QUERY import *
 from services.testing.TESTING import Run_Test_Suite
-from build import *
+from execution.build.build import *
 
 Current_Mode = "ASSISTANT"
 
@@ -20,6 +20,8 @@ if __name__ == "__main__":
     
     
     elif Current_Mode == "ASSISTANT":
+      # Engage Visual Component
+      
       # Begin the assistant's main loop to take queries
       Get_Query()
       
@@ -28,5 +30,7 @@ if __name__ == "__main__":
       
     
     elif Current_Mode == "CONVERSE":
+      
+
       
       pass

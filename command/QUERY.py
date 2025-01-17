@@ -5,7 +5,8 @@ from command.Simple_Requests import *
 from interpretation.assistant import Question_Parse
 
 
-from main_config import USER_NAME
+from execution.build.main_config import USER_NAME
+from execution.teardown.teardown import *
 from command.config import *
 
 def Introduction():
@@ -37,6 +38,7 @@ def Get_Query():
         # Exit Condition
         if 'never mind' in query: 
             Say("Okay... See you later...")
+            Shutdown_Assistant()
             break
         
         # Question Parsing --------------------------------------------

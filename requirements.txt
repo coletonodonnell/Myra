@@ -6,3 +6,4 @@ pyttsx3
 PyYAML
 SpeechRecognition
 elevenlabs
+eel

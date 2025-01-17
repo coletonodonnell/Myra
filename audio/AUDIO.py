@@ -4,7 +4,7 @@ import requests
 import playsound
 import os
 
-from main_config import ELEVENLABS_API_KEY, BUILD_SETTINGS
+from execution.build.main_config import ELEVENLABS_API_KEY, BUILD_SETTINGS, DEV_SETTINGS
 from audio.config import *
 
 previousText = ""
@@ -81,7 +81,13 @@ payload = {
     
  
 def Say(text):
-	
+	if (DEV_SETTINGS["usingVoice"] == False):
+		print(text)
+		return
+
+	# Print the text to the console
+	print(text)
+ 
 	if (BUILD_SETTINGS["systemVoice"] == True):
 		engine = pyttsx3.init()
 		voices = engine.getProperty('voices')
@@ -95,6 +101,7 @@ def Say(text):
 		
 		# Blocks while processing all the currently
 		engine.runAndWait()
+		
 	
 	else:
   
