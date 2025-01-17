@@ -156,6 +156,5 @@ config/
 
 /openai-env
 audio/config.py
-main_config.py
 response.mp3
 TESTING.py
