@@ -8,8 +8,8 @@ The proper conventions for the repo can found in this document. Please refer to 
 These are the proper naming conventions to be followed for files, folders, and anything else:
 
 - **Folders:** all lower case (audio, command)
-- **Configuration Files:** all lower case, must be named **config**.&nbsp;
-  - To avoid confusion, do not put multiple config files in the same directory. The content of the config file pertains to the folder it's in. The only exception is <SwmPath>[main_config.py](/main_config.py)</SwmPath>.
+- **Configuration Files:** all lower case, must be named \*\_**config**.&nbsp;
+  - To avoid confusion, do not put multiple config files in the same directory.
 - **High-Level Files:** Full Capitalized, Single-word (ENTRY, TESTING).
   - HL Files are files which hold the most operational logic and use functional files to complete operations.&nbsp;
 - **Functional Files:** Capitalized Snakecase (Response_Variation, Simple_Tasks).
@@ -28,7 +28,7 @@ These are the proper naming conventions to be followed for files, folders, and a
 
 Comments should be kept concise and small if embedded into code. If larger blocks of comments are needed, such as the beginning of the file or to explain a section of code, using dashes to separate a block of lines is preferred.
 
-<SwmSnippet path="/command/QUERY.py" line="96">
+<SwmSnippet path="/command/QUERY.py" line="98">
 
 ---
 
