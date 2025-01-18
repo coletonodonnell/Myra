@@ -21,6 +21,8 @@ The main files that the assistant uses to complete operations are:
 
 <SwmPath>[command/Sys_Interaction.py](/command/Sys_Interaction.py)</SwmPath>acts as the main file containing any system interaction functions that Myra can use. Examples include opening files, starting programs, etc. Any actions that the user wishes do which involves interacting with the computer should be implemented in this file.
 
-## 
+## Expansions
+
+The entirety of the command structure is up to be changed. Having a single file that maintains the control of what the assistant decides seems like the best decision. Just be sure update this doc with any future implementations or structure changes.
 
 <SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBUENBQSUzQSUzQUF2YWxvbkFjZQ==" repo-name="PCAA"><sup>Powered by [Swimm](https://app.swimm.io/)</sup></SwmMeta>

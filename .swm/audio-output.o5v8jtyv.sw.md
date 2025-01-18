@@ -20,7 +20,7 @@ Here are the available functions:
 
 - <SwmToken path="/audio/AUDIO.py" pos="16:2:2" line-data="def Take_Command():">`Take_Command`</SwmToken>
 - <SwmToken path="/audio/AUDIO.py" pos="83:2:4" line-data="def Say(text):">`Say(text`</SwmToken>)
-- <SwmToken path="/audio/AUDIO.py" pos="145:2:4" line-data="def Set_Voice(voiceName):">`Set_Voice(voiceName`</SwmToken>)
+- <SwmToken path="/audio/AUDIO.py" pos="152:2:4" line-data="def Set_Voice(voiceName):">`Set_Voice(voiceName`</SwmToken>)
 
 ### <SwmToken path="/audio/AUDIO.py" pos="16:2:4" line-data="def Take_Command():">`Take_Command()`</SwmToken>
 
@@ -73,18 +73,19 @@ def Take_Command():
 
 ### <SwmToken path="/audio/AUDIO.py" pos="83:2:4" line-data="def Say(text):">`Say(text`</SwmToken>)
 
-This function produces the audio reponse needed from a query. It chooses between using the system or custom voice and says the text parameter that was passed into the function. If the custom voice option is being used, the function will make a HTTP post call to Elevenlabs, and assuming successful, will write to a <SwmToken path="/audio/AUDIO.py" pos="126:10:12" line-data="		with open(&quot;audio/output/response.mp3&quot;, &quot;wb&quot;) as f:">`response.mp3`</SwmToken> audio file in the audio output folder and play the file as the response.&nbsp;
+This function produces the audio response needed from a query. It chooses between using the system or custom voice and says the text parameter that was passed into the function. If the custom voice option is being used, the function will make a HTTP post call to Elevenlabs, and assuming successful, will write to a <SwmToken path="/audio/AUDIO.py" pos="133:10:12" line-data="		with open(&quot;audio/output/response.mp3&quot;, &quot;wb&quot;) as f:">`response.mp3`</SwmToken> audio file in the audio output folder and play the file as the response.&nbsp;
 
-<SwmSnippet path="audio/AUDIO.py" line="82">
+<SwmSnippet path="/audio/AUDIO.py" line="87">
 
 ---
 
 &nbsp;
 
 ```
+
+	# Print the text to the console
+	print(text)
  
-def Say(text):
-	
 	if (BUILD_SETTINGS["systemVoice"] == True):
 		engine = pyttsx3.init()
 		voices = engine.getProperty('voices')
@@ -98,6 +99,7 @@ def Say(text):
 		
 		# Blocks while processing all the currently
 		engine.runAndWait()
+		
 	
 	else:
   

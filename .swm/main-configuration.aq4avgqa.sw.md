@@ -1,35 +1,36 @@
 ---
 title: Main Configuration
 ---
-
-<SwmSnippet path="main_config.py" line="3">
+<SwmSnippet path="config/main_config.yaml" line="1">
 
 ---
 
 Configuration Variables
 
 ```
-# Load the configuration for main
-with open("./config/main_config.yaml", "r") as file:
-  main_config = yaml.safe_load(file)
+User:
+  Username: "Boss"
+Keys:
+  OPEN_AI_API_KEY: "KEY_HERE"
+  ELEVENLABS_API_KEY: "KEY_HERE"
+Voices:
+  useSystemVoice: True
+  starterVoice: "Taron"
+  currentVoice: "Taron"
+Development:
+  devEnvironment: True
+  usingGUI: True
+  usingLLM: True
+  usingOperations: True
+  usingVoice: True
 
-# Load Variables
-OPEN_AI_API_KEY = main_config["Keys"]["OPEN_AI_API_KEY"]
-ELEVENLABS_API_KEY = main_config["Keys"]["ELEVENLABS_API_KEY"]
-USER_NAME = main_config["User"]["Username"]
-
-BUILD_SETTINGS = {
-  "systemVoice" : main_config["Voices"]["useSystemVoice"],
-  "starterVoice": main_config["Voices"]["starterVoice"],
-  "currentVoice": main_config["Voices"]["currentVoice"],
-}
 ```
 
 ---
 
 </SwmSnippet>
 
-<SwmPath>[main_config.py](/main_config.py)</SwmPath> contains the main configuration variables for Myra including API keys, user variables and preferences, etc. All API keys must be filled with a usable API key for certain parts of the assistant to work.&nbsp;&nbsp;
+<SwmPath>[config/main_config.yaml](/config/main_config.yaml)</SwmPath> contains the main configuration variables for Myra including API keys, user variables and preferences, etc. They are read into the system at <SwmPath>[execution/building/main_config.py](/execution/building/main_config.py)</SwmPath> Depending on the variables filled out, some parts of the assistant may or may not work.&nbsp;&nbsp;&nbsp;
 
 See <SwmPath>[config/main_config.yaml](/config/main_config.yaml)</SwmPath>and fill it out for development.
 
@@ -40,6 +41,8 @@ The current required keys are:
 
 ## Future Expansions
 
-The configuration currently is a YAML file that is read and loaded into variables for the system to use. This should be changed to a personal database which can be saved and opened. For now this works, but make sure you don't commit your <SwmPath>[config/main_config.yaml](/config/main_config.yaml)</SwmPath> to the repo.
+For the Development section of the YAML file, there are several variables that can be True or False depending on what parts of the assistant you want to operate. Right now, only <SwmToken path="/config/main_config.yaml" pos="15:1:1" line-data="  usingVoice: True">`usingVoice`</SwmToken> and <SwmToken path="/config/main_config.yaml" pos="12:1:1" line-data="  usingGUI: True">`usingGUI`</SwmToken> function, as the rest of the systems aren't in place yet.
+
+Once the Operations and LLM systems are operating correctly, they should be configured to be turned off and on with their respective variables for faster dev time.
 
 <SwmMeta version="3.0.0" repo-id="Z2l0aHViJTNBJTNBUENBQSUzQSUzQUF2YWxvbkFjZQ==" repo-name="PCAA"><sup>Powered by [Swimm](https://app.swimm.io/)</sup></SwmMeta>
