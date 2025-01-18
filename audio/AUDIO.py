@@ -4,7 +4,7 @@ import requests
 import playsound
 import os
 
-from execution.build.main_config import ELEVENLABS_API_KEY, BUILD_SETTINGS, DEV_SETTINGS
+from execution.building.main_config import ELEVENLABS_API_KEY, BUILD_SETTINGS, DEV_SETTINGS
 from audio.config import *
 
 previousText = ""

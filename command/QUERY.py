@@ -5,7 +5,7 @@ from command.Simple_Requests import *
 from interpretation.assistant import Question_Parse
 
 
-from execution.build.main_config import USER_NAME
+from execution.building.main_config import USER_NAME
 from execution.teardown.teardown import *
 from command.config import *
 

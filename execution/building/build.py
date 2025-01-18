@@ -10,7 +10,7 @@
 #
 # -----------------------------------------------------
 from audio.AUDIO import Set_Voice
-from execution.build.main_config import BUILD_SETTINGS, DEV_SETTINGS
+from execution.building.main_config import BUILD_SETTINGS, DEV_SETTINGS
 from video.VISUAL import Init_Window
 
 import threading

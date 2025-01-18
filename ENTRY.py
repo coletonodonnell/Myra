@@ -1,6 +1,6 @@
 from command.QUERY import *
 from services.testing.TESTING import Run_Test_Suite
-from execution.build.build import *
+from execution.building.build import *
 
 Current_Mode = "ASSISTANT"
 
