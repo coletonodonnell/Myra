@@ -83,12 +83,12 @@ payload = {
  
 def Say(text):
 	if (DEV_SETTINGS["usingVoice"] == False):
-		print(text)
+		print("Myra: " + text)
 		return
 		
 
 	# Print the text to the console
-	print(text)
+	print("Myra: " + text)
  
 	if (BUILD_SETTINGS["systemVoice"] == True):
 		engine = pyttsx3.init()
