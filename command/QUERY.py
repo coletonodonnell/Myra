@@ -1,5 +1,7 @@
 import speech_recognition as sr
 
+
+from response.RESPONSE import RESPONSE_SYSTEM
 from audio.AUDIO import *
 from command.Simple_Requests import *
 from interpretation.assistant import Question_Parse
@@ -10,7 +12,7 @@ from execution.teardown.teardown import *
 from command.config import *
 
 def Introduction():
-	Say(f"Hey {USER_NAME}, What's up?...")
+	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
  
 
 def Get_Query():
@@ -37,7 +39,7 @@ def Get_Query():
         
         # Exit Condition
         if 'never mind' in query: 
-            Say("Okay... See you later...")
+            RESPONSE_SYSTEM.Custom_Response("Goodbye!")
             Shutdown_Assistant()
             break
         
@@ -55,7 +57,7 @@ def Get_Query():
             # Identity 
             # TO DO: Consider all of the possible ways to ask for the name, account for variation
             if 'you' or 'your name' in query:
-                Say("I'm Myra, dummy... Your personal assistant.")
+                RESPONSE_SYSTEM.Custom_Response(f"My name is Myra. Your personal assistant dummy!")
                 continue
             
             
