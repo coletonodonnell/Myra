@@ -1,5 +1,5 @@
-import speech_recognition as sr
 
+import speech_recognition as sr
 
 from response.RESPONSE import RESPONSE_SYSTEM
 from audio.AUDIO import *
@@ -10,6 +10,7 @@ from interpretation.assistant import Question_Parse
 from execution.building.main_config import USER_NAME
 from execution.teardown.teardown import *
 from command.config import *
+from command.functions.Check_For_Keyword import Check_For_Keyword
 
 def Introduction():
 	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
@@ -22,18 +23,26 @@ def Get_Query():
     while(True):
         
         # Initialize the query ----------------------------------------
-        query = Take_Command().lower()
+        # Input Channel Check - Audio or Text Box (TO DO)
+        if queryInputType == "Audio":
+            
+            # Audio Keyword Check
+            query = Take_Command().lower() # Take command from the user
+            if Check_For_Keyword(query, activationKeyword) == False: # Check for the activation keyword
+                print("Activation Keyword not found.")
+                continue
+            query = query.replace(activationKeyword, "") # Remove the activation keyword from the query
+            
+        elif queryInputType == "Text":
+            print("Text Input is not supported yet.")
+        else:
+            print("Invalid Input Type.")
+            break   
+        
         if query == "NONE": continue
         print(f"User: {query}")
         
-        # Chat gpt integration (NOT USED YET)
-        '''
-        message = client.beta.threads.messages.create(
-            thread_id=thread.id,
-            role="user",
-            content=query
-        )
-        '''
+        
         
         # Execute the query -------------------------------------------
         
@@ -44,13 +53,6 @@ def Get_Query():
             break
         
         # Question Parsing --------------------------------------------
-        # Myra will accept currently 2 types of questions:
-        # 1. Questions about herself
-        # 2. General questions
-        # 
-        # Questions about Myra will be answered with a specific response for now. TO DO: Implement a more complex response which involves a call to personality API from character.ai.
-        # General questions which are not about Myra will be met with a ChatGPT response.
-        #
         elif Question_Parse.Is_Question(query):
             
             

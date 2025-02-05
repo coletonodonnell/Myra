@@ -28,7 +28,7 @@ if __name__ == "__main__":
     
     
     elif Current_Mode == "ASSISTANT":
-      # Engage Visual Component
+
       
       # Begin the assistant's main loop to take queries
       Get_Query()
