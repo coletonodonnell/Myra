@@ -9,29 +9,32 @@ This doc gives a high level overview of how querying works for Myra. The assista
 
 The main functions of <SwmPath>[command/QUERY.py](/command/QUERY.py)</SwmPath> are:
 
-- <SwmToken path="/command/QUERY.py" pos="12:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
-- <SwmToken path="/command/QUERY.py" pos="16:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
+- <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
+- <SwmToken path="/command/QUERY.py" pos="19:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
 
 ## Design Decisions & Expansions
 
 A singular function is used to determine queries for **Assistant Mode.** This SHOULD be changed for a better overall structure that will be interacting with other parts of the assistant. Please ensure you update this section if you are changing the main command structure.
 
-## <SwmToken path="/command/QUERY.py" pos="16:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
+## <SwmToken path="/command/QUERY.py" pos="19:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
 
-This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="12:2:4" line-data="def Introduction():">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/audio/AUDIO.py" pos="16:2:2" line-data="def Take_Command():">`Take_Command`</SwmToken> and respond to the query accordingly.&nbsp;
+This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/audio/AUDIO.py" pos="17:2:2" line-data="def Take_Command():">`Take_Command`</SwmToken> and respond to the query accordingly based on audio or text input.
 
 The current functionality of the function are:
 
 - Return name of assistant
 - Opening Google
 
-<SwmSnippet path="/command/QUERY.py" line="16">
+<SwmSnippet path="command/QUERY.py" line="16">
 
 ---
 
 Function Definition
 
-```python
+```
+	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
+ 
+
 def Get_Query():
     
     Introduction()
@@ -39,42 +42,43 @@ def Get_Query():
     while(True):
         
         # Initialize the query ----------------------------------------
-        query = Take_Command().lower()
+        # Input Channel Check - Audio or Text Box (TO DO)
+        if queryInputType == "Audio":
+            
+            # Audio Keyword Check
+            query = Take_Command().lower() # Take command from the user
+            if Check_For_Keyword(query, activationKeyword) == False: # Check for the activation keyword
+                print("Activation Keyword not found.")
+                continue
+            query = query.replace(activationKeyword, "") # Remove the activation keyword from the query
+            
+        elif queryInputType == "Text":
+            print("Text Input is not supported yet.")
+        else:
+            print("Invalid Input Type.")
+            break   
+        
         if query == "NONE": continue
         print(f"User: {query}")
         
-        # Chat gpt integration (NOT USED YET)
-        '''
-        message = client.beta.threads.messages.create(
-            thread_id=thread.id,
-            role="user",
-            content=query
-        )
-        '''
+        
         
         # Execute the query -------------------------------------------
         
         # Exit Condition
         if 'never mind' in query: 
-            Say("Okay... See you later...")
+            RESPONSE_SYSTEM.Custom_Response("Goodbye!")
             Shutdown_Assistant()
             break
         
         # Question Parsing --------------------------------------------
-        # Myra will accept currently 2 types of questions:
-        # 1. Questions about herself
-        # 2. General questions
-        # 
-        # Questions about Myra will be answered with a specific response for now. TO DO: Implement a more complex response which involves a call to personality API from character.ai.
-        # General questions which are not about Myra will be met with a ChatGPT response.
-        #
         elif Question_Parse.Is_Question(query):
             
             
             # Identity 
             # TO DO: Consider all of the possible ways to ask for the name, account for variation
             if 'you' or 'your name' in query:
-                Say("I'm Myra, dummy... Your personal assistant.")
+                RESPONSE_SYSTEM.Custom_Response(f"My name is Myra. Your personal assistant dummy!")
                 continue
             
             
@@ -126,31 +130,25 @@ def Get_Query():
         #     continue
                 
         # Open Google
-        elif "google" in query:
-            Say("Opening Google.")
-            Open_Websearch()
-            continue
 ```
 
 ---
 
 </SwmSnippet>
 
-## <SwmToken path="/command/QUERY.py" pos="12:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
+## <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
 
 This is the introduction function used to introduce the assistant. It serves two purposes, to introduce Myra on startup and indicate that the user has switched from any other mode to **Assistant Mode**.
 
-<SwmSnippet path="/command/QUERY.py" line="11">
+<SwmSnippet path="command/QUERY.py" line="15">
 
 ---
 
 Function Definition
 
-```python
-
+```
 def Introduction():
-	Say(f"Hey {USER_NAME}, What's up?...")
- 
+	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
 ```
 
 ---
