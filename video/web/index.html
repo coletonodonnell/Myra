@@ -1,20 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" />
     <title>Myra - Virtual Assistant</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=0.5" />
-    <head>
-      <link rel="stylesheet" href="global.css" />
-    </head>
+    <link rel="stylesheet" href="global.css" />
   </head>
 
   <body>
-    <div class="container">
-      <h1>"A journey of a thousand miles begins with a single step."</h1>
-      <br />
-      <h1>Though, I wouldn't mind driving.</h1>
+    <a href="settings.html" class="settings-icon">
+      <img src="./Images/Settings.png" alt="Settings" />
+    </a>
+
+    <a class="menu-icon" onclick="toggleMenu()">
+      <img src="./Images/menu.png" alt="Menu" />
+    </a>
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <div class="menu">
+      <h2>Previous&nbspCommands</h2>
+      <button onclick="goToPage('./Settings.html')">“Hey Myra, open google”... </button>
+      <button onclick="goToPage('./Settings.html')">“Hey Myra, open google”...</button>
+      <button onclick="goToPage('./Settings.html')">“Hey Myra, open google”...</button>
+      <button onclick="goToPage('./Settings.html')">“Hey Myra, open google”...</button>
     </div>
+
+    <div class="logo-container">
+      <img id="theme-logo" src="./Images/MyraLight.png" alt="Myra Logo">
+  </div>
+  
+
+    <div class="container">
+      <h1>What would you like to do?</h1>
+      <br />
+      <h1>Enter in the text box or say “Hey Myra” </h1>
+      <button id="theme-toggle-btn" onclick="toggleTheme()">Toggle theme</button> 
+    </div>
+
+    <div class="search-prompt">
+      <p class="prompt-title">You can ask me to...</p>
+      <p class="prompt-options">List option 1, list option 2, list option 3</p>
+  </div>
+  
+  
+
+    <div class="search-bar">
+      <input type="text" id="search" placeholder="Type here or say &quot;Hey Myra&quot; ..." />
+      <button onclick="searchFunction()">Search</button>
+    </div>
+
+    <script src="theme.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>

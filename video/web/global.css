@@ -1,22 +1,425 @@
 html,
+
+:root {
+  --background-light: #FFFFFF;
+  --text-light: #1375DD;
+
+  --background-dark: linear-gradient(to bottom, #0F0B2C, #093792);
+  --text-dark: #60A6F0;
+
+  --search-bar-light-background: #D2E8FF;
+  --search-bar-dark-background: #FFEED6;
+
+  --search-bar-light-border: 2px #1D2AA0;
+  --search-bar-dark-border: 2px #D6BC97;
+
+
+  /* Settings Page */
+  --settings-light-background: #FFFFFF;
+  --settings-dark-background: #0F0B2C;
+  --settings-light-text: #0F0B2C;
+  --settings-dark-text: #FFFFFF;
+}
+
 body {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
   font-size: 16px;
+  font-family: 'Poppins', sans-serif;
   font-weight: 400;
-  line-height: 1.5;
-  color: #000000;
-  background-color: #f5f5f5;
+  line-height: 0.5;
+  color: var(--text-light);
+  background: var(--background-light);
+  transition: background 0.5s, color 0.5s;
+
 }
+
+body.dark-mode {
+  background: var(--background-dark); 
+  color: var(--text-dark);
+}
+
 
 .container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   align-content: center;
+  padding-top: 50px;
+  padding-bottom: 60px;
 }
+
+.settings-icon {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  z-index: 1000;
+}
+
+.settings-icon img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.settings-icon img:hover {
+  transform: scale(1.1);
+}
+
+.menu-icon {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  z-index: 1000;
+}
+
+.menu-icon img {
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.menu-icon img:hover {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(10px); 
+  display: none;
+  z-index: 999;
+}
+
+/*menu bar*/
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1001;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  opacity: 1;
+}
+
+/* Previous Commands*/
+.menu h2 {
+  color: white;
+  font-size: 23px;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.menu.show {
+  transform: translateX(0); 
+}
+.settings.hide {
+  transform: translateX(-100%); 
+}
+
+/*listed prev command buttons*/
+.menu button {
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4); /*make dark mode have 82, 2, 72, 0.4(0, 0, 0, .4)*/
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  transition: background 0.3s, transform 0.2s;
+  width: 100%;
+  text-align: left;
+}
+
+.menu button:hover {
+  transform: scale(1.05);
+}
+
+/*search bar alaignment*/
+.search-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.search-bar input {
+  width: 80%;
+  padding: 10px;
+  border: var(--search-bar-light-border);
+  border-radius: 200px;
+  margin-right: 10px;
+  background-color: var(--search-bar-light-background);
+
+}
+
+/*search button*/
+.search-bar button {
+  padding: 10px;
+  background-color: #8AAAFA; 
+  color: white;
+  border: none;
+  border-radius: 200px;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #0f58a7;  /* darken on hover */
+}
+
+body.dark-mode .search-bar input {
+  background-color: var(--search-bar-dark-background);
+  border: var(--search-bar-dark-border);
+}
+
+body.dark-mode .search-bar button {
+  background-color: #0f58a7; 
+}
+
+.settings-page {
+    background: var(--settings-light-background);
+    color: var(--settings-light-text);
+    transition: background 0.5s, color 0.5s;
+}
+
+body.dark-mode .settings-page {
+    background: var(--settings-dark-background);
+    color: var(--settings-dark-text);
+}
+
+/* prompts above search bar giving suggestions, alignment*/
+.search-prompt {
+  position: fixed;
+  bottom: 60px; 
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+}
+
+/*You can ask me to...*/
+.prompt-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #AA63A0;
+}
+
+/*List option 1, list option 2, list option 3*/
+.prompt-options {
+  font-size: 16px;
+  color: #651259; 
+}
+
+/* Dark mode prompts */
+body.dark-mode .prompt-title {
+  color: white;
+}
+body.dark-mode .prompt-options {
+  color: #B2AEAE; 
+}
+
+/* Myra behind speech bubble*/
+
+.logo-container {
+  position: fixed;
+  top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+#theme-logo {
+  max-width: 600px; /* Adjust size */
+    height: auto;
+    transition: opacity 0.5s ease;
+}
+
+/*--------SETTINGS PAGES----------*/
+/*AHHHHHHHHHH*/
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  background-color: var(--settings-light-background);
+  color: var(--settings-light-text);
+  transition: background 0.5s, color 0.5s;
+}
+
+body.dark-mode .settings-header {
+  background-color: var(--settings-dark-background);
+  color: var(--settings-dark-text);
+}
+
+.settings-logo {
+  width: 50px;
+  height: auto;
+}
+
+.settings-nav button {
+  background: none;
+  border: black;
+  color: inherit;
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.settings-nav button:hover {
+  color: #236CB9; 
+}
+
+.settings-navbar {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  gap: 200px;
+  width: 100%; 
+  padding: 45px; 
+  position: fixed; 
+  border-bottom: 1px solid black;
+  top: 0%;
+  left: 0;
+  z-index: 1000; 
+  font-size: 30px;
+}
+
+.settings-section {
+  display: none;
+  padding: 20px;
+}
+
+.settings-section:not(.hidden) {
+  display: block;
+}
+
+.general-settings {
+  text-align: center;
+  padding: 20px;
+}
+
+/* "Hello User!" */
+.general-settings h1 {
+  font-size: 40px;
+  color: black;
+  padding: 30px;
+}
+
+body.dark-mode .general-settings h1 {
+  color: white;
+}
+
+/* Profile Picture */
+.profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic-container img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid black;
+}
+
+body.dark-mode .profile-pic-container img {
+  border-color: white;
+}
+
+/* Change Photo (Underlined Text) */
+.change-photo {
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+body.dark-mode .change-photo {
+  color: white;
+}
+
+/* Buttons */
+.settings-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: left;
+}
+
+.settings-btn {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid black;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+body.dark-mode .settings-btn {
+  border-color: white;
+  color: var(white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.settings-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .settings-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* delete account button */
+.delete-btn {
+  /*make this centered*/
+  border-color: red;
+  color: red;
+}
+
+.delete-btn:hover {
+  background: rgba(255, 0, 0, 0.2);
+}
+
