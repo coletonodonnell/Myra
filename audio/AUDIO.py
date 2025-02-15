@@ -3,6 +3,7 @@ import speech_recognition as sr
 import requests
 import playsound
 import os
+import time
 
 from execution.building.main_config import ELEVENLABS_API_KEY, BUILD_SETTINGS, DEV_SETTINGS
 from audio.config import *
@@ -37,7 +38,7 @@ def Take_Command():
 			
 
 			Query = r.recognize_google(audio, language='en-in')
-			print("the command is = ", Query)
+			print("Query: ", Query)
 			
 		except Exception as e:
 			print(e)
@@ -82,11 +83,12 @@ payload = {
  
 def Say(text):
 	if (DEV_SETTINGS["usingVoice"] == False):
-		print(text)
+		print("Myra: " + text)
 		return
+		
 
 	# Print the text to the console
-	print(text)
+	print("Myra: " + text)
  
 	if (BUILD_SETTINGS["systemVoice"] == True):
 		engine = pyttsx3.init()
@@ -127,7 +129,7 @@ def Say(text):
 		
 		# Make the request and save the response
 		response = requests.post(url, json=payload, headers=headers)
-		print("Response: " + str(response.status_code))
+		print("Eleven Labs Response: " + str(response.status_code))
 	
 		# Save the response to a file
 		with open("audio/output/response.mp3", "wb") as f:
@@ -138,9 +140,14 @@ def Say(text):
 		
 		# Close the file
 		f.close()
+  
+  		# Wait 1 seconds to ensure the audio is played - Fix later
+		time.sleep(1)
 		
 		# Delete the file
 		os.remove("audio/output/response.mp3")
+  
+
 
 
 
