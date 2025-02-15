@@ -4,8 +4,10 @@ openai
 playsound==1.2.2
 PyAudio
 pyttsx3
+pillow
 PyYAML
 pyclip
 SpeechRecognition
 elevenlabs
 eel
+pywin32
