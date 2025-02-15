@@ -7,8 +7,6 @@ from response.conversational.CONVERSATION import *
 Current_Mode = "ASSISTANT"
 
 if __name__ == "__main__":
-  # Initialize the database table for voices
-  create_table()
   
   # Initialization
   Build()
