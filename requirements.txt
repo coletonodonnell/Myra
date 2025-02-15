@@ -1,9 +1,11 @@
 nltk
+mss==10.0.0
 openai
 playsound==1.2.2
 PyAudio
 pyttsx3
 PyYAML
+pyclip
 SpeechRecognition
 elevenlabs
 eel
