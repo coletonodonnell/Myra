@@ -12,11 +12,16 @@
 from audio.AUDIO import Set_Voice
 from execution.building.main_config import BUILD_SETTINGS, DEV_SETTINGS
 from video.VISUAL import Init_Window
+from services.voices import create_table
+
 
 import threading
 
 
 def Build():
+
+  # Initialize the database table for voices
+  create_table()
   
   # Set the voice of the assistant
   Set_Voice(BUILD_SETTINGS["starterVoice"])

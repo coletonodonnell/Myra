@@ -1,13 +1,10 @@
 from command.QUERY import *
 from services.testing.TESTING import Run_Test_Suite
 from execution.building.build import *
-from services.voices import create_table
 
 Current_Mode = "ASSISTANT"
 
 if __name__ == "__main__":
-  # Initialize the database table for voices
-  create_table()
   
   # Initialization
   Build()
