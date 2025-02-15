@@ -5,6 +5,7 @@ import eel
 # Initialize the window for the assistant
 def Init_Window():
     eel.init('./video/web')
+    
     eel.start('index.html', close_callback=Shutdown_Assistant)
   
   
