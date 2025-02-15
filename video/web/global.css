@@ -13,12 +13,25 @@ html,
   --search-bar-light-border: 2px #1D2AA0;
   --search-bar-dark-border: 2px #D6BC97;
 
+  --menu-btn-light-background: rgba(82, 2, 72, 0.4);
+  --menu-btn-dark-background: rgba(0, 0, 0, 0.4);
 
   /* Settings Page */
   --settings-light-background: #FFFFFF;
   --settings-dark-background: #0F0B2C;
   --settings-light-text: #0F0B2C;
   --settings-dark-text: #FFFFFF;
+
+  /* color of X to exit settings page*/
+  --close-light: url('./Images/lightX.png');
+  --close-dark: url('./Images/darkX.png');
+
+  --search-btn-light-background: #1C355E;  
+  --search-btn-dark-background: #0f58a7;   
+  --search-btn-hover: #C9419B;
+  --search-btn-text: white;
+
+
 }
 
 body {
@@ -54,6 +67,7 @@ body.dark-mode {
   padding-bottom: 60px;
 }
 
+/* settings cog on home page*/
 .settings-icon {
   position: fixed;
   top: 20px;
@@ -74,6 +88,7 @@ body.dark-mode {
   transform: scale(1.1);
 }
 
+/* hamburger button for previous commands*/
 .menu-icon {
   position: fixed;
   top: 20px;
@@ -146,7 +161,7 @@ body.dark-mode {
 /*listed prev command buttons*/
 .menu button {
   padding: 10px;
-  background: rgba(0, 0, 0, 0.4); /*make dark mode have 82, 2, 72, 0.4(0, 0, 0, .4)*/
+  background: var(--menu-btn-light-background);
   color: white;
   border: 2px solid white;
   cursor: pointer;
@@ -157,7 +172,9 @@ body.dark-mode {
   width: 100%;
   text-align: left;
 }
-
+body.dark-mode .menu button {
+  background: var(--menu-btn-dark-background); 
+}
 .menu button:hover {
   transform: scale(1.05);
 }
@@ -188,36 +205,27 @@ body.dark-mode {
 /*search button*/
 .search-bar button {
   padding: 10px;
-  background-color: #8AAAFA; 
-  color: white;
+  background-color: var(--search-btn-light-background); 
+  color: var(--search-btn-text);;
   border: none;
   border-radius: 200px;
   cursor: pointer;
 }
 
 .search-bar button:hover {
-  background-color: #0f58a7;  /* darken on hover */
+  background-color:var(--search-btn-hover);  
 }
+
+body.dark-mode .search-bar button:hover {
+  background-color: var(--search-btn-hover); /* same hover effect as in light mode */
+}
+
 
 body.dark-mode .search-bar input {
   background-color: var(--search-bar-dark-background);
   border: var(--search-bar-dark-border);
 }
 
-body.dark-mode .search-bar button {
-  background-color: #0f58a7; 
-}
-
-.settings-page {
-    background: var(--settings-light-background);
-    color: var(--settings-light-text);
-    transition: background 0.5s, color 0.5s;
-}
-
-body.dark-mode .settings-page {
-    background: var(--settings-dark-background);
-    color: var(--settings-dark-text);
-}
 
 /* prompts above search bar giving suggestions, alignment*/
 .search-prompt {
@@ -234,13 +242,13 @@ body.dark-mode .settings-page {
 .prompt-title {
   font-size: 18px;
   font-weight: bold;
-  color: #AA63A0;
+  color: #c01baa;
 }
 
 /*List option 1, list option 2, list option 3*/
 .prompt-options {
   font-size: 16px;
-  color: #651259; 
+  color: #970782; 
 }
 
 /* Dark mode prompts */
@@ -269,6 +277,16 @@ body.dark-mode .prompt-options {
 
 /*--------SETTINGS PAGES----------*/
 /*AHHHHHHHHHH*/
+.settings-page {
+  background: var(--settings-light-background);
+  color: var(--settings-light-text);
+  transition: background 0.5s, color 0.5s;
+}
+
+body.dark-mode .settings-page {
+  background: var(--settings-dark-background);
+  color: var(--settings-dark-text);
+}
 
 .settings-header {
   display: flex;
@@ -308,16 +326,24 @@ body.dark-mode .settings-header {
   display: flex;
   justify-content: center; 
   align-items: center; 
-  gap: 200px;
+  gap: 150px;
   width: 100%; 
-  padding: 45px; 
+  padding: 20px; 
   position: fixed; 
   border-bottom: 1px solid black;
   top: 0%;
-  left: 0;
+  right: 0%;
   z-index: 1000; 
   font-size: 30px;
 }
+
+
+
+/* Hover effect for the button */
+#close-btn:hover {
+  color: red;
+}
+
 
 .settings-section {
   display: none;
@@ -423,3 +449,103 @@ body.dark-mode .settings-btn:hover {
   background: rgba(255, 0, 0, 0.2);
 }
 
+.settings-exit {
+  width: 30px; /* Adjust size as needed */
+  height: auto;
+}
+
+body.dark-mode .settings-exit {
+  content: url('./Images/darkX.png');
+}
+
+/* LOGIN / SIGNUP*/
+/* Apply gradient background to the body */
+
+
+/* The authentication box */
+.auth-box {
+  display: flex;
+  width: 70%;
+  max-width: 900px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Left side (Login) */
+.login-side {
+  flex: 1;
+  background-color: #5999F0; /* light blue */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-side h2 {
+  font-size: 20px;
+  margin-left: 20px;
+  line-height: 1.25;
+
+
+}
+
+.login-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  background: rgba(253, 13, 189, 0.4);
+}
+
+/* Right side (Sign Up) */
+.signup-side {
+  flex: 1;
+  background-color: white;
+  color: #333;
+  padding: 20px;
+}
+
+.signup-side h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.signup-side input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.signup-side input:focus {
+  border-color: #1e90ff;
+  outline: none;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: black;
+  border: 2px solid black;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+.signup-btn:hover {
+  background: rgba(253, 13, 189, 0.4);
+}
