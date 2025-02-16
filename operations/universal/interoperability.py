@@ -36,12 +36,15 @@ class Interoperability():
     def add_function(self, function: OSFunction):
         self.functions[function.name] = function
 
+
     def get_all_functions(self) -> dict[str, OSFunction]:
         return self.functions
     
+
     def get_function(self, name: str) -> OSFunction:
         return self.functions.get(name)
     
+
     def execute_function(self, name: str, *args) -> bool:
         if len(args) != len(self.functions[name].arguments_list):
             return False
@@ -49,3 +52,12 @@ class Interoperability():
             return False
         return self.functions[name].class_object(*args).execute()
     
+
+    def parse_functions_to_human(self) -> str:
+        functions = self.get_all_functions()
+        human_readable = ""
+        for function in functions:
+            human_readable += f"{function.name}:\n"
+            human_readable += f"Description: {function.description}\n"
+            human_readable += "\n"
+        return human_readable

@@ -11,6 +11,7 @@ class PrintScreen(OSScriptlet):
     def __init__(self, store_to_clipboard: str):
         self.clipboard: bool = bool(store_to_clipboard)
 
+
     def execute(self) -> bool:
         try:
             with mss() as sct:
@@ -43,6 +44,7 @@ class PrintScreen(OSScriptlet):
                 return True
         except Exception as e:
             return False
+
 
     @staticmethod
     def send_to_clipboard(clip_type, data):

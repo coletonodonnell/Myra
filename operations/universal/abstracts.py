@@ -11,6 +11,7 @@ class OSFunction:
                          # and types stored as strings (e.g. "bool").
     class_object: type   # The class object of the function.
     
+    
     @classmethod
     def from_dict(cls, data):
         return cls(
