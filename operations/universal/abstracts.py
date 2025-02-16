@@ -9,13 +9,15 @@ class OSFunction:
     description: str     # Describe what this functionality is, describe its arguments.
     arguments_list: Dict # Describe name of arguments (from description)
                          # and types stored as strings (e.g. "bool").
+    class_object: type   # The class object of the function.
     
     @classmethod
     def from_dict(cls, data):
         return cls(
             name = data.get('name'),
             description = data.get('description'),
-            arguments_list = data.get('arguments_list')
+            arguments_list = data.get('arguments_list'),
+            class_object = None
         )
 
 
