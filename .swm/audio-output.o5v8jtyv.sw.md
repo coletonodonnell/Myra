@@ -56,7 +56,7 @@ def Take_Command():
 			
 
 			Query = r.recognize_google(audio, language='en-in')
-			print("the command is = ", Query)
+			print("Query: ", Query)
 			
 		except Exception as e:
 			print(e)
