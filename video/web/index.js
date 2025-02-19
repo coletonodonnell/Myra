@@ -28,3 +28,17 @@
     }
   };
   
+// search functionality
+// add event listener for enter button as well?
+  document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("search-btn").addEventListener("click", function () {
+        let query = document.getElementById("search").value.trim();
+
+        if (query !== "") {  // Make sure it's not empty
+            console.log("Sending query:", query); 
+            eel.Receive_Query_From_GUI(query);  // Send query to Python
+        }
+    });
+});
+
+

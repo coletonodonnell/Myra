@@ -22,3 +22,8 @@ def Update():
 def Close_Window():
     
     pass
+
+
+@eel.expose
+def Receive_Query_From_GUI(query):
+    print(f"Received query: {query}")
