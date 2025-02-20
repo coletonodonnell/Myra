@@ -9,62 +9,41 @@ This doc gives a high level overview of how querying works for Myra. The assista
 
 The main functions of <SwmPath>[command/QUERY.py](/command/QUERY.py)</SwmPath> are:
 
-
-- <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
-- <SwmToken path="/command/QUERY.py" pos="19:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
-
+- <SwmToken path="/command/QUERY.py" pos="20:1:3" line-data="    Introduction()">`Introduction()`</SwmToken>
+- <SwmToken path="/command/QUERY.py" pos="18:2:2" line-data="def Main_Query_Loop():">`Main_Query_Loop`</SwmToken>
 
 ## Design Decisions & Expansions
 
 A singular function is used to determine queries for **Assistant Mode.** This SHOULD be changed for a better overall structure that will be interacting with other parts of the assistant. Please ensure you update this section if you are changing the main command structure.
 
+## <SwmToken path="/command/QUERY.py" pos="18:2:2" line-data="def Main_Query_Loop():">`Main_Query_Loop`</SwmToken>
 
-## <SwmToken path="/command/QUERY.py" pos="19:2:4" line-data="def Get_Query():">`Get_Query()`</SwmToken>
-
-This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/audio/AUDIO.py" pos="17:2:2" line-data="def Take_Command():">`Take_Command`</SwmToken> and respond to the query accordingly based on audio or text input.
-
+This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="20:1:3" line-data="    Introduction()">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/command/QUERY.py" pos="25:5:7" line-data="        query = Is_New_Query()">`Is_New_Query()`</SwmToken> and sends the query to the <SwmToken path="/command/QUERY.py" pos="29:1:1" line-data="        Core_Process(query)">`Core_Process`</SwmToken> (currently unimplemented).
 
 The current functionality of the function are:
 
 - Return name of assistant
 - Opening Google
 
-
-<SwmSnippet path="command/QUERY.py" line="16">
+<SwmSnippet path="command/QUERY.py" line="18">
 
 ---
 
 Function Definition
 
 ```
-	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
- 
-
-def Get_Query():
+def Main_Query_Loop():
     
     Introduction()
     
     while(True):
         
-        # Initialize the query ----------------------------------------
-        # Input Channel Check - Audio or Text Box (TO DO)
-        if queryInputType == "Audio":
-            
-            # Audio Keyword Check
-            query = Take_Command().lower() # Take command from the user
-            if Check_For_Keyword(query, activationKeyword) == False: # Check for the activation keyword
-                print("Activation Keyword not found.")
-                continue
-            query = query.replace(activationKeyword, "") # Remove the activation keyword from the query
-            
-        elif queryInputType == "Text":
-            print("Text Input is not supported yet.")
-        else:
-            print("Invalid Input Type.")
-            break   
-        
+        # Check if new query is available
+        query = Is_New_Query()
         if query == "NONE": continue
-        print(f"User: {query}")
+        
+        # Run Core Processor?
+        Core_Process(query)
         
         
         
@@ -135,34 +114,13 @@ def Get_Query():
         #     continue
                 
         # Open Google
+        elif "google" in query:
+            Say("Opening Google.")
 ```
 
 ---
 
 </SwmSnippet>
-
-
-## <SwmToken path="/command/QUERY.py" pos="15:2:4" line-data="def Introduction():">`Introduction()`</SwmToken>
-
-This is the introduction function used to introduce the assistant. It serves two purposes, to introduce Myra on startup and indicate that the user has switched from any other mode to **Assistant Mode**.
-
-<SwmSnippet path="command/QUERY.py" line="15">
-
-
----
-
-Function Definition
-
-```
-def Introduction():
-	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
-```
-
----
-
-</SwmSnippet>
-
-## 
 
 ## 
 
