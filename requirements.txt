@@ -11,3 +11,4 @@ SpeechRecognition
 elevenlabs
 eel
 pywin32
+langchain
