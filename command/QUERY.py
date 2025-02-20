@@ -1,46 +1,32 @@
 
-import speech_recognition as sr
-
 from response.RESPONSE import RESPONSE_SYSTEM
 from audio.AUDIO import *
 from command.Simple_Requests import *
 from interpretation.assistant import Question_Parse
 
-
 from execution.building.main_config import USER_NAME
 from execution.teardown.teardown import *
-from command.config import *
-from command.functions.Check_For_Keyword import Check_For_Keyword
 
-def Introduction():
-	RESPONSE_SYSTEM.Custom_Response(f"Hello {USER_NAME}! How can I help you today?")
+from command.config import *
+
+from command.functions.Command_Functions import Introduction
+from command.querying.Is_New_Query import Is_New_Query
+from command.querying.PROCESS import Core_Process
+
  
 
-def Get_Query():
+def Main_Query_Loop():
     
     Introduction()
     
     while(True):
         
-        # Initialize the query ----------------------------------------
-        # Input Channel Check - Audio or Text Box (TO DO)
-        if queryInputType == "Audio":
-            
-            # Audio Keyword Check
-            query = Take_Command().lower() # Take command from the user
-            if Check_For_Keyword(query, activationKeyword) == False: # Check for the activation keyword
-                print("Activation Keyword not found.")
-                continue
-            query = query.replace(activationKeyword, "") # Remove the activation keyword from the query
-            
-        elif queryInputType == "Text":
-            print("Text Input is not supported yet.")
-        else:
-            print("Invalid Input Type.")
-            break   
-        
+        # Check if new query is available
+        query = Is_New_Query()
         if query == "NONE": continue
-        print(f"User: {query}")
+        
+        # Run Core Processor?
+        Core_Process(query)
         
         
         
