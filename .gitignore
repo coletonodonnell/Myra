@@ -158,3 +158,6 @@ config/
 audio/config.py
 response.mp3
 TESTING.py
+
+# Database
+*.db

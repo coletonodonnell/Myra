@@ -21,6 +21,27 @@ class ResponseSystem:
         pass
     
     # Response Functions ------------------------------------------------------
+    # def Evaluate_For_Response(self, responseType, response, isReprompt = False, REJECTION_TYPE = None):
+    #     # If the response is a reprompt, then call bypass of new query
+    #     # if isReprompt: return
+    #     # TO DO: Implement this
+        
+    #     # Call the response function based on the response type
+    #     if responseType == "Custom":
+    #         self.Custom_Response(response)
+    #     elif responseType == "Stall":
+    #         self.Stall()
+    #     elif responseType == "Return":
+    #         self.Return_From_Stall()
+    #     elif responseType == "Rejection":
+    #         if REJECTION_TYPE == "Question":
+    #             self.Rejection(self.REJECTION_TYPES.QUESTION) # Rejection Type is required
+    #         elif REJECTION_TYPE == "Request":
+    #             self.Rejection(self.REJECTION_TYPES.REQUEST)
+    #     else: 
+    #         print("Invalid Response Type found in response system.")
+    #     pass
+    
     def Custom_Response(self, text):
         # Say the text with no parameters for now.
         Custom_Response(text)
