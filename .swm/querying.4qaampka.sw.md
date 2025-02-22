@@ -11,6 +11,8 @@ The main functions of <SwmPath>[command/QUERY.py](/command/QUERY.py)</SwmPath> a
 
 - <SwmToken path="/command/QUERY.py" pos="20:1:3" line-data="    Introduction()">`Introduction()`</SwmToken>
 - <SwmToken path="/command/QUERY.py" pos="18:2:2" line-data="def Main_Query_Loop():">`Main_Query_Loop`</SwmToken>
+- <SwmToken path="/command/QUERY.py" pos="25:5:7" line-data="        query = Is_New_Query()">`Is_New_Query()`</SwmToken>
+- Core_Process()
 
 ## Design Decisions & Expansions
 
@@ -18,14 +20,14 @@ A singular function is used to determine queries for **Assistant Mode.** This SH
 
 ## <SwmToken path="/command/QUERY.py" pos="18:2:2" line-data="def Main_Query_Loop():">`Main_Query_Loop`</SwmToken>
 
-This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="20:1:3" line-data="    Introduction()">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/command/QUERY.py" pos="25:5:7" line-data="        query = Is_New_Query()">`Is_New_Query()`</SwmToken> and sends the query to the <SwmToken path="/command/QUERY.py" pos="29:1:1" line-data="        Core_Process(query)">`Core_Process`</SwmToken> (currently unimplemented).
+This function is the **main query** **loop** for **Assistant Mode**. It starts with an <SwmToken path="/command/QUERY.py" pos="20:1:3" line-data="    Introduction()">`Introduction()`</SwmToken> and follows a while loop to take in a query from <SwmToken path="/command/QUERY.py" pos="25:5:7" line-data="        query = Is_New_Query()">`Is_New_Query()`</SwmToken> and sends the query to the Core_Process() .
 
 The current functionality of the function are:
 
 - Return name of assistant
 - Opening Google
 
-<SwmSnippet path="command/QUERY.py" line="18">
+<SwmSnippet path="/command/QUERY.py" line="18">
 
 ---
 
@@ -41,21 +43,14 @@ def Main_Query_Loop():
         # Check if new query is available
         query = Is_New_Query()
         if query == "NONE": continue
-        
-        # Run Core Processor?
-        Core_Process(query)
-        
-        
-        
-        # Execute the query -------------------------------------------
-        
+
         # Exit Condition
         if 'never mind' in query: 
             RESPONSE_SYSTEM.Custom_Response("Goodbye!")
             Shutdown_Assistant()
             break
-        
-        # Question Parsing --------------------------------------------
+
+         # Question Parsing --------------------------------------------
         elif Question_Parse.Is_Question(query):
             
             
@@ -65,44 +60,7 @@ def Main_Query_Loop():
                 RESPONSE_SYSTEM.Custom_Response(f"My name is Myra. Your personal assistant dummy!")
                 continue
             
-            
-            # General Questions ---------------------------------------
-            # 
-            
-            # Start GPT Response (NOT USED YET)
-            '''
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo-16k",
-                messages=[
-                    {"role": "system", "content": RESPONSE_SYSTEM_CONTEXT},
-                    {"role": "user", "content": query}
-                ]
-            )
-            
-            
-            # Get the response
-            notResponded = True
-            while (notResponded):
-                if response.choices[0].message.content != None:
-                    print(f'Myra: {response.choices[0].message.content}')
-                    Say(response.choices[0].message.content)
-                    notResponded = False
-                else:
-                    print('Waiting for response...')
-            '''
-            
-            
-            
-            
-            
-            
-            
-                            
-            continue
-            
-
-        
-        # Simple Requests ----------------------------------------------
+            # Simple Requests ----------------------------------------------
         # Simple Requests are requests that are simple to execute that do not require 
         # any external API calls or complex logic. 
         # Examples include telling the time, opening a website, etc.
@@ -116,6 +74,48 @@ def Main_Query_Loop():
         # Open Google
         elif "google" in query:
             Say("Opening Google.")
+            Open_Websearch()
+            continue
+        
+        # Run Core Processor?
+        Core_Process(query)
+        
+        
+        
+        # Execute the query -------------------------------------------
+        
+        
+        
+       
+            
+            # General Questions ---------------------------------------
+            # 
+            
+            # Start GPT Response (NOT USED YET)
+            # '''
+            # response = client.chat.completions.create(
+            #     model="gpt-3.5-turbo-16k",
+            #     messages=[
+            #         {"role": "system", "content": RESPONSE_SYSTEM_CONTEXT},
+            #         {"role": "user", "content": query}
+            #     ]
+            # )
+            
+            
+            # # Get the response
+            # notResponded = True
+            # while (notResponded):
+            #     if response.choices[0].message.content != None:
+            #         print(f'Myra: {response.choices[0].message.content}')
+            #         Say(response.choices[0].message.content)
+            #         notResponded = False
+            #     else:
+            #         print('Waiting for response...')
+            # '''
+            
+
+        
+        
 ```
 
 ---

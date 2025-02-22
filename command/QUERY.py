@@ -24,21 +24,14 @@ def Main_Query_Loop():
         # Check if new query is available
         query = Is_New_Query()
         if query == "NONE": continue
-        
-        # Run Core Processor?
-        Core_Process(query)
-        
-        
-        
-        # Execute the query -------------------------------------------
-        
+
         # Exit Condition
         if 'never mind' in query: 
             RESPONSE_SYSTEM.Custom_Response("Goodbye!")
             Shutdown_Assistant()
             break
-        
-        # Question Parsing --------------------------------------------
+
+         # Question Parsing --------------------------------------------
         elif Question_Parse.Is_Question(query):
             
             
@@ -48,44 +41,7 @@ def Main_Query_Loop():
                 RESPONSE_SYSTEM.Custom_Response(f"My name is Myra. Your personal assistant dummy!")
                 continue
             
-            
-            # General Questions ---------------------------------------
-            # 
-            
-            # Start GPT Response (NOT USED YET)
-            '''
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo-16k",
-                messages=[
-                    {"role": "system", "content": RESPONSE_SYSTEM_CONTEXT},
-                    {"role": "user", "content": query}
-                ]
-            )
-            
-            
-            # Get the response
-            notResponded = True
-            while (notResponded):
-                if response.choices[0].message.content != None:
-                    print(f'Myra: {response.choices[0].message.content}')
-                    Say(response.choices[0].message.content)
-                    notResponded = False
-                else:
-                    print('Waiting for response...')
-            '''
-            
-            
-            
-            
-            
-            
-            
-                            
-            continue
-            
-
-        
-        # Simple Requests ----------------------------------------------
+            # Simple Requests ----------------------------------------------
         # Simple Requests are requests that are simple to execute that do not require 
         # any external API calls or complex logic. 
         # Examples include telling the time, opening a website, etc.
@@ -101,3 +57,43 @@ def Main_Query_Loop():
             Say("Opening Google.")
             Open_Websearch()
             continue
+        
+        # Run Core Processor?
+        Core_Process(query)
+        
+        
+        
+        # Execute the query -------------------------------------------
+        
+        
+        
+       
+            
+            # General Questions ---------------------------------------
+            # 
+            
+            # Start GPT Response (NOT USED YET)
+            # '''
+            # response = client.chat.completions.create(
+            #     model="gpt-3.5-turbo-16k",
+            #     messages=[
+            #         {"role": "system", "content": RESPONSE_SYSTEM_CONTEXT},
+            #         {"role": "user", "content": query}
+            #     ]
+            # )
+            
+            
+            # # Get the response
+            # notResponded = True
+            # while (notResponded):
+            #     if response.choices[0].message.content != None:
+            #         print(f'Myra: {response.choices[0].message.content}')
+            #         Say(response.choices[0].message.content)
+            #         notResponded = False
+            #     else:
+            #         print('Waiting for response...')
+            # '''
+            
+
+        
+        

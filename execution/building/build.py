@@ -10,15 +10,27 @@
 #
 # -----------------------------------------------------
 from audio.AUDIO import Set_Voice
-from execution.building.main_config import BUILD_SETTINGS, DEV_SETTINGS
+from execution.building.main_config import BUILD_SETTINGS, DEV_SETTINGS, HUGGINGFACE_API_KEY, LANGSMITH_API_KEY, LANGSMITH_SETTINGS
 from video.VISUAL import Init_Window
 from services.voices import create_table
+import os
 
 
 import threading
 
 
 def Build():
+
+  # Set up Huggingface API Token
+  os.environ["HUGGINGFACEHUB_API_TOKEN"] = HUGGINGFACE_API_KEY
+
+  # Set up Langsmith Tracing for Myra
+  os.environ["LANGSMITH_API_KEY"] = LANGSMITH_API_KEY
+
+  os.environ["LANGSMITH_TRACING"] = LANGSMITH_SETTINGS["LANGSMITH_TRACING"]
+  os.environ["LANGSMITH_ENDPOINT"] = LANGSMITH_SETTINGS["LANGSMITH_ENDPOINT"]
+  os.environ["LANGSMITH_PROJECT"] = LANGSMITH_SETTINGS["LANGSMITH_PROJECT"]
+
 
   # Initialize the database table for voices
   create_table()

@@ -2,7 +2,7 @@ from openai import OpenAI
 
 # Globals
 commandVariables = {
-  "queryInputType": "Audio",
+  "queryInputType": "Text",
   "activationKeyword": "myra",
   "newQueryAvailable": False,
   "currentQuery": "",
@@ -10,6 +10,8 @@ commandVariables = {
 }
 
 RESPONSE_SYSTEM_CONTEXT = "You are a personal assistant. Answer any questions I have and help me with simple requests."
+
+
 # client = OpenAI()
 
 # OpenAI Defintions -------------------------------------
