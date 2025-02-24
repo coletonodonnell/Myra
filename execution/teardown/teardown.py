@@ -14,7 +14,7 @@
 import os
 
 
-def Shutdown_Assistant():
+def Shutdown_Assistant(arg1, arg2):
     print("Shutting down the assistant...")
     
     

@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
       
       # Begin the assistant's main loop to take queries
-      Get_Query()
+      Main_Query_Loop()
       
       # adjust later to accomodate for changing modes
       break
