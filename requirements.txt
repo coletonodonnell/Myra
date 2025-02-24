@@ -12,3 +12,6 @@ elevenlabs
 eel
 pywin32
 langchain
+langgraph
+langchain_huggingface
+characterai

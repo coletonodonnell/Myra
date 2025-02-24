@@ -1,11 +1,17 @@
 from openai import OpenAI
-from execution.building.main_config import OPEN_AI_API_KEY, USER_NAME
 
 # Globals
-queryInputType = "Audio"
-activationKeyword = "myra"
+commandVariables = {
+  "queryInputType": "Text",
+  "activationKeyword": "myra",
+  "newQueryAvailable": False,
+  "currentQuery": "",
+  "isReprompt": False,
+}
 
 RESPONSE_SYSTEM_CONTEXT = "You are a personal assistant. Answer any questions I have and help me with simple requests."
+
+
 # client = OpenAI()
 
 # OpenAI Defintions -------------------------------------
@@ -24,3 +30,4 @@ assistant = client.beta.assistants.create(
 thread = client.beta.threads.create()
 '''
 # ----------------------------------------------------------------
+
