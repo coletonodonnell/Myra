@@ -4,10 +4,7 @@ from pydantic import BaseModel, Field
 from operations.windows.osfunctions import PrintScreen
 
 class PrintScreenInput(BaseModel):
-    store_to_clipboard: bool = Field(
-        default=True,
-        description="Whether to place screenshot in clipboard as well",
-    )
+    clipboard: int = Field(description="Whether to place screenshot in clipboard as well. Set to one if true, zero if false", default=1)
 
 class PrintScreenTool(BaseTool):
     name: str = "print_screen_tool"
@@ -17,15 +14,14 @@ class PrintScreenTool(BaseTool):
     )
     args_schema: Type[BaseModel] = PrintScreenInput
 
-    def _run(self, store_to_clipboard: bool = True) -> str:
-        ps = PrintScreen(store_to_clipboard)
-        success = ps.execute()
+    def _run(self, clipboard: int) -> str:
+        clipboard = bool(clipboard)
+        ps: PrintScreen = PrintScreen(clipboard)
+        success: bool = ps.execute()
         if success:
-            return (
-                f"Screenshot taken and saved. Clipboard option = {store_to_clipboard}"
-            )
+            return f"Screenshot taken and saved. Clipboard option = {clipboard}"
         else:
             return "An error occurred during screenshot capture."
 
-    async def _arun(self, store_to_clipboard: bool = True) -> str:
+    async def _arun(self, clipboard: bool) -> str:
         raise NotImplementedError("Async execution not implemented.")
