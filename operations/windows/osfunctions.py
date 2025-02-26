@@ -1,16 +1,22 @@
-import win32clipboard
+from operations.universal.abstracts import OSScriptlet
+
 import os
 import datetime
+
+import win32clipboard
 from PIL import Image
 from io import BytesIO
-from operations.universal.abstracts import OSScriptlet
 from mss import mss, tools
+
+from webbrowser import open_new_tab
+from urllib.parse import quote
+
+from shutil import disk_usage
 
 
 class PrintScreen(OSScriptlet):
     def __init__(self, store_to_clipboard: str):
         self.clipboard: bool = bool(store_to_clipboard)
-
 
     def execute(self) -> bool:
         try:
@@ -45,10 +51,73 @@ class PrintScreen(OSScriptlet):
         except Exception as e:
             return False
 
-
     @staticmethod
     def send_to_clipboard(clip_type, data):
         win32clipboard.OpenClipboard()
         win32clipboard.EmptyClipboard()
         win32clipboard.SetClipboardData(clip_type, data)
         win32clipboard.CloseClipboard()
+
+
+class DiskSpace(OSScriptlet):
+    def __init__(self):
+        pass
+
+    def execute(self) -> bool:
+        try:
+            system_drive = os.environ.get("SystemDrive", "C:")
+            path = system_drive + "\\"
+            total, used, free = disk_usage(path)
+
+            return (
+                f"Disk usage for {path}:\n"
+                f"Total: {self.bytes_to_gb(total):.2f} GB\n"
+                f"Used:  {self.bytes_to_gb(used):.2f} GB\n"
+                f"Free:  {self.bytes_to_gb(free):.2f} GB"
+                )
+        
+        except Exception:
+            return "An error occurred while calculating disk space."
+    
+    @staticmethod
+    def bytes_to_gb(bytes_value):
+        return bytes_value / (2**30)
+    
+
+class DiskSpace(OSScriptlet):
+    def __init__(self):
+        pass
+
+    def execute(self) -> bool:
+        try:
+            system_drive = os.environ.get("SystemDrive", "C:")
+            path = system_drive + "\\"
+            total, used, free = disk_usage(path)
+
+            return (
+                f"Disk usage for {path}:\n"
+                f"Total: {self.bytes_to_gb(total):.2f} GB\n"
+                f"Used:  {self.bytes_to_gb(used):.2f} GB\n"
+                f"Free:  {self.bytes_to_gb(free):.2f} GB"
+                )
+        
+        except Exception:
+            return "An error occurred while calculating disk space."
+    
+    @staticmethod
+    def bytes_to_gb(bytes_value):
+        return bytes_value / (2**30)
+
+
+class WebSearch(OSScriptlet):
+    def __init__(self, query: str):
+        self.query = query
+
+    def execute(self) -> bool:
+        try:
+            query_encoded = quote(self.query)
+            url = f"https://www.google.com/search?q={query_encoded}"
+            open_new_tab(url)
+            return True
+        except Exception:
+            return False

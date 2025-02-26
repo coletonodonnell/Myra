@@ -1,9 +1,0 @@
-[
-    {
-        "name": "PrintScreen",
-        "description": "This functionality takes a screenshot of the user screen. Use this functionality when the user wants you to take a screenshot of their screen. Ask the user if it wants the screenshot copied to their clipboard. If they say yes, the 'copy_to_clipboard' argument is True, if not it is False. If you are unable to gather an answer, default to False.",
-        "arguments_list": {
-            "copy_to_clipboard": "bool"
-        }
-    }
-]
