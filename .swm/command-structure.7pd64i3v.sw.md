@@ -22,8 +22,8 @@ graph TD
 
 ## Config Variables
 
-- &nbsp;<SwmToken path="/command/config.py" pos="4:0:0" line-data="commandVariables = {">`commandVariables`</SwmToken>&nbsp;
-  - <SwmToken path="/command/config.py" pos="5:2:2" line-data="  &quot;queryInputType&quot;: &quot;Audio&quot;,">`queryInputType`</SwmToken>: String, either "Text" or "Audio" to change input type
+- <SwmToken path="/command/config.py" pos="4:0:0" line-data="commandVariables = {">`commandVariables`</SwmToken>
+  - <SwmToken path="/command/config.py" pos="5:2:2" line-data="  &quot;queryInputType&quot;: &quot;Text&quot;,">`queryInputType`</SwmToken>: String, either "Text" or "Audio" to change input type
   - <SwmToken path="/command/config.py" pos="6:2:2" line-data="  &quot;activationKeyword&quot;: &quot;myra&quot;,">`activationKeyword`</SwmToken>: String, set to "myra" and must be a part of an audio query to process the query.
   - <SwmToken path="/command/config.py" pos="8:2:2" line-data="  &quot;currentQuery&quot;: &quot;&quot;,">`currentQuery`</SwmToken>: String, most recent query/holder for user query to be processed.
   - <SwmToken path="/command/querying/Is_New_Query.py" pos="24:6:6" line-data="        if commandVariables[&#39;newQueryAvailable&#39;] == False: return &quot;NONE&quot;">`newQueryAvailable`</SwmToken>: Boolean, set flag to true when a new query is set for <SwmToken path="/command/config.py" pos="8:2:2" line-data="  &quot;currentQuery&quot;: &quot;&quot;,">`currentQuery`</SwmToken> to process it. Automatically set to false in <SwmToken path="/command/querying/Is_New_Query.py" pos="5:2:4" line-data="def Is_New_Query():">`Is_New_Query()`</SwmToken>.
