@@ -28,14 +28,14 @@ These are the proper naming conventions to be followed for files, folders, and a
 
 Comments should be kept concise and small if embedded into code. If larger blocks of comments are needed, such as the beginning of the file or to explain a section of code, using dashes to separate a block of lines is preferred.
 
-<SwmSnippet path="/command/QUERY.py" line="98">
+<SwmSnippet path="/command/QUERY.py" line="44">
 
 ---
 
 Comment Section Separator
 
 ```python
-        # Simple Requests ----------------------------------------------
+            # Simple Requests ----------------------------------------------
         # Simple Requests are requests that are simple to execute that do not require 
         # any external API calls or complex logic. 
         # Examples include telling the time, opening a website, etc.
@@ -57,7 +57,7 @@ Comment Section Separator
 
 </SwmSnippet>
 
-<SwmSnippet path="services/testing/TESTING.py" line="5">
+<SwmSnippet path="/services/testing/TESTING.py" line="7">
 
 ---
 

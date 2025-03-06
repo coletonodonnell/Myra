@@ -100,10 +100,35 @@ class DiskSpace(OSScriptlet):
                 f"Used:  {self.bytes_to_gb(used):.2f} GB\n"
                 f"Free:  {self.bytes_to_gb(free):.2f} GB"
             )
-
+        
         except Exception:
             return "An error occurred while calculating disk space."
+    
+    @staticmethod
+    def bytes_to_gb(bytes_value):
+        return bytes_value / (2**30)
+    
 
+class DiskSpace(OSScriptlet):
+    def __init__(self):
+        pass
+
+    def execute(self) -> bool:
+        try:
+            system_drive = os.environ.get("SystemDrive", "C:")
+            path = system_drive + "\\"
+            total, used, free = disk_usage(path)
+
+            return (
+                f"Disk usage for {path}:\n"
+                f"Total: {self.bytes_to_gb(total):.2f} GB\n"
+                f"Used:  {self.bytes_to_gb(used):.2f} GB\n"
+                f"Free:  {self.bytes_to_gb(free):.2f} GB"
+                )
+        
+        except Exception:
+            return "An error occurred while calculating disk space."
+    
     @staticmethod
     def bytes_to_gb(bytes_value):
         return bytes_value / (2**30)
@@ -121,7 +146,7 @@ class WebSearch(OSScriptlet):
             return True
         except Exception:
             return False
-
+          
 
 class NetworkMonitor(OSScriptlet):
     def __init__(self, targets=None, count: int = 4):

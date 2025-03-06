@@ -1,6 +1,7 @@
 from langchain.tools import BaseTool
 from typing import Type, List
 from pydantic import BaseModel, Field
+
 from operations.windows.osfunctions import (
     PrintScreen,
     DiskSpace,
@@ -17,7 +18,6 @@ from operations.windows.osfunctions import (
     EmptyTrashCan,
     SecurityScan,
 )
-
 
 class PrintScreenInput(BaseModel):
     clipboard: int = Field(
