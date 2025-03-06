@@ -7,10 +7,12 @@ pyttsx3
 pillow
 PyYAML
 pyclip
+psutil
 SpeechRecognition
 elevenlabs
 eel
 pywin32
+speedtest-cli
 langchain
 langgraph
 langchain_huggingface
